@@ -16,17 +16,15 @@ type UVReport struct {
 
 /* Result returned from OpenUV API call. */
 type Result struct {
-	UV        float32 `json:"uv"`
-	UVMax     float32 `json:"uv_max"`
-	Ozone     float32 `json:"ozone"`
+	UV               float64          `json:"uv"`
+	UVTime           string           `json:"uv_time"`
+	UVMax            float64          `json:"uv_max"`
+	UVMaxTime        string           `json:"uv_max_time"`
+	Ozone            float64          `json:"ozone"`
+	OzoneTime        string           `json:"ozone_time"`
 
-	UVTime    string  `json:"uv_time"`
-	UVMaxTime string  `json:"uv_max_time"`
-	OzoneTime string  `json:"ozone_time"`
-
-	SafeExposureTime  `json:"safe_exposure_time"`
-
-	SunInfo           `json:"sun_info"`
+	SafeExposureTime SafeExposureTime `json:"safe_exposure_time"`
+	SunInfo          SunInfo          `json:"sun_info"`
 }
 
 /* Safe exposure time in minutes for different skin types (Fitzpatrick scale). */
@@ -41,18 +39,31 @@ type SafeExposureTime struct {
 
 /* The top structure for the data related to the Sun. */
 type SunInfo struct {
-	SunTimes `json:"sun_times"`
+	SunTimes    SunTimes    `json:"sun_times"`
+	SunPosition SunPosition `json:"sunt_position"`
 }
 
 /* Struct containing information on important sun positions. */
 type SunTimes struct {
-	Sunrise    string `json:"sunrise"`
-	SolarNoon  string `json:"solarNoon"`
-	Sunset     string `json:"sunset"`
-	Night      string `json:"night"`
+	Sunrise       string `json:"sunrise"`
+	SunriseEnd    string `json:"sunriseEnd"`
+	GoldenHourEnd string `json:"goldenHourEnd"`
+	SolarNoon     string `json:"solarNoon"`
+	GoldenHour    string `json:"goldenHour"`
+	SunsetStart   string `json:"sunsetStart"`
+	Sunset        string `json:"sunset"`
+	Dusk          string `json:"dusk"`
+	NauticalDusk  string `json:"nauticalDusk"`
+	Night         string `json:"night"`
+	Nadir         string `json:"nadir"`
+	NightEnd      string `json:"nightEnd"`
+	NauticalDawn  string `json:"nauticalDawn"`
+	Dawn          string `json:"dawn"`
+}
 
-	GoldenHour string `json:"goldenHour"`
-	GHMorning  string `json:"goldenHourEnd"`
+type SunPosition struct {
+	Azimuth  float64 `json:"azimuth"`
+	Altitude float64 `json:"altitude"`
 }
 
 /* Requests the report from OpenUV API.*/
