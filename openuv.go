@@ -4,8 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-
-	"github.com/Zedran/geoloc"
 )
 
 // A template URL for requesting data from OpenUV API
@@ -58,8 +56,8 @@ type SunTimes struct {
 }
 
 /* Requests the report from OpenUV API.*/
-func GetUVReport(client *http.Client, loc *geoloc.Location, keyOUV string) (*UVReport, error) {
-	req, err := http.NewRequest("GET", fmt.Sprintf(OPEN_UV_URL, loc.Lat, loc.Lon), nil)
+func GetUVReport(client *http.Client, lat, lon float64, keyOUV string) (*UVReport, error) {
+	req, err := http.NewRequest("GET", fmt.Sprintf(OPEN_UV_URL, lat, lon), nil)
 	if err != nil {
 		return nil, err
 	}
