@@ -1,4 +1,4 @@
-module github.com/Zedran/uv
+module github.com/Zedran/go-openuv
 
 go 1.18
 

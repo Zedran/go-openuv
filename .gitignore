@@ -1,8 +1,0 @@
-cache/
-build/
-settings/
-
-go.sum
-
-*.exe
-*.json
