@@ -6,9 +6,6 @@ import (
 	"net/http"
 )
 
-// A template URL for requesting data from OpenUV API
-const OPEN_UV_URL string = "https://api.openuv.io/api/v1/uv?lat=%f&lng=%f"
-
 /* The top structure of the OpenUV API response. */
 type UVReport struct {
 	Result `json:"result"`
@@ -68,6 +65,9 @@ type SunPosition struct {
 
 /* Requests the report from OpenUV API.*/
 func GetUVReport(client *http.Client, lat, lon float64, keyOUV string) (*UVReport, error) {
+	// A template URL for requesting data from OpenUV API
+	const OPEN_UV_URL string = "https://api.openuv.io/api/v1/uv?lat=%f&lng=%f"
+
 	req, err := http.NewRequest("GET", fmt.Sprintf(OPEN_UV_URL, lat, lon), nil)
 	if err != nil {
 		return nil, err
