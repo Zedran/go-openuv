@@ -1,4 +1,4 @@
-# UV
+# Go OpenUV
 
 This package contains a set of structures and functions required to interact with OpenUV API.
 
